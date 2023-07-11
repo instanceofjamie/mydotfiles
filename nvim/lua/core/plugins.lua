@@ -1,8 +1,8 @@
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -15,55 +15,54 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- themes
-  use 'folke/tokyonight.nvim'
-  use ({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' }) 
+  -- use ({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
   use "EdenEast/nightfox.nvim"
 
-  use 'xiyaowong/transparent.nvim'
+  --  use 'xiyaowong/transparent.nvim'
 
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'shoukoo/commentary.nvim'
+  use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
   use {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-  use { 
+  use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.0',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
+  use {
+    'nathom/filetype.nvim',
+    config = function()
+      require("filetype").setup {
+        overrides = {
+          extensions = {
+            tf = "terraform",
+            tfvars = "terraform",
+            tfstate = "json",
+          },
+        },
+      }
+    end,
+  }
+  -- use 'hashivim/vim-terraform'
+  use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
-  use { 
+  use {
     'windwp/nvim-autopairs',
     config = function()
       require("nvim-autopairs").setup {}
-    end
-  }
-  use { 
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    config = function()
-      require("copilot").setup({ 
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end
-
-  }
-  use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function ()
-      require("copilot_cmp").setup()
     end
   }
   -- My plugins here
