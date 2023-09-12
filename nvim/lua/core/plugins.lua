@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
+  use 'kassio/neoterm'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'shoukoo/commentary.nvim'
   use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }

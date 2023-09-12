@@ -130,6 +130,11 @@ _G.packer_plugins = {
     path = "/home/wisemj/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  neoterm = {
+    loaded = true,
+    path = "/home/wisemj/.local/share/nvim/site/pack/packer/start/neoterm",
+    url = "https://github.com/kassio/neoterm"
+  },
   ["nightfox.nvim"] = {
     loaded = true,
     path = "/home/wisemj/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
